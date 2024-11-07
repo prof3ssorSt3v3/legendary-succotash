@@ -7,6 +7,21 @@
     return spinner.firstElementChild; //html inside the fragment
   })();
   fetchImage(honeycomb);
+  document.addEventListener('fullscreenchange', (ev) => {
+    console.log(ev);
+  });
+  document.querySelector('main > img').addEventListener('dblclick', (ev) => {
+    //toggle fullscreen on image
+    let img = ev.target;
+    console.log(document.fullscreenElement);
+    if (!document.fullscreenElement) {
+      img.requestFullscreen().catch((err) => {
+        console.error('failed to make image fullscreen');
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  });
 })();
 
 function fetchImage(spinner) {
